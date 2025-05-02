@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-
+const host= import.meta.env.VITE_BACKEND_URL
 const App = () => {
   const [url, setUrl]= useState('');
   const [isLoading, setIsLoading]= useState(false);
@@ -10,7 +10,7 @@ const App = () => {
   const handleSummarize = async()=>{
     setIsLoading(true)
     try{
-      const res = await axios.post('http://localhost:3030/summarize',{url});
+      const res = await axios.post(`${host}/summarize`,{url});
       console.log(res.data)
 
       if(res.data){
