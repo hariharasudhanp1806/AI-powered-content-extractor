@@ -10,6 +10,8 @@ const App = () => {
   const handleSummarize = async()=>{
     setIsLoading(true)
     try{
+      console.log(`${host}/summarize`);
+      
       const res = await axios.post(`${host}/summarize`,{url});
       console.log(res.data)
 
@@ -50,7 +52,7 @@ const App = () => {
           <tr>
             <th>S.No:</th>
             <th>Summary</th>
-            <th>Key points</th>
+             {/* <th>Key points</th> */}
           </tr>
         </thead>
         <tbody>
@@ -63,13 +65,13 @@ const App = () => {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{item.summary}</td>
-                <td>
+                {/* <td>
                   <ul>
                     {item.keypoints.map((point, i) => (
                       <li key={i}>{point}</li>
                     ))}
                   </ul>
-                </td>
+                </td> */}
               </tr>
             ))
           )}

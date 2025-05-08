@@ -13,6 +13,8 @@ app.use(cors());
 const Huggingface_Headers = {
   headers: {
     Authorization: `Bearer ${HuggingFace_API_Key}`,
+    Accept: "application/json",
+    "Content-Type": "application/json",
   },
 };
 
@@ -38,7 +40,7 @@ async function extractkeypoints(summary) {
 function createchunks(text) {
   const chunkSize = 1000;
   const chunks = [];
-  for (let i = 0; i < 10000; i += chunkSize) {
+  for (let i = 0; i < 3000; i += chunkSize) {
     chunks.push(text.slice(i, i + chunkSize));
   }
   return chunks;
@@ -70,11 +72,11 @@ app.post("/summarize", async (req, res) => {
     const result = [];
     for (const chunk of chunks) {
       const summary = await summarizetext(chunk);
-      const keypoints = await extractkeypoints(summary);
+      //const keypoints = await extractkeypoints(summary);
       result.push({
         chunk,
         summary,
-        keypoints,
+        //keypoints,
       });
     }
 
